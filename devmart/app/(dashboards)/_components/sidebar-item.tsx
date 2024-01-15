@@ -3,6 +3,7 @@
 import { LucideIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
+import { cn } from "@/lib/utils";
 import path from "path";
 
 interface SidebarItemProps{
@@ -24,10 +25,21 @@ export const SidebarItem = ({
   pathname === href ||
   pathname?.startsWith(`${href}/`)
 
+  const onClick = () => {
+    router.push(href);
+  }
+
   return ( 
-    <div>
+    <button onClick={onClick}
+    type="button"
+    className={cn(
+      'flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20',
+      isActive && 'text-sky-700 bg-sky-200/20 hover:bg-sky-200/20'
+
+    )}
+    >
       sidebar
-    </div>
+    </button>
    );
 }
  
