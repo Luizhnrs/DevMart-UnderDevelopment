@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
+
+
 
 export default function Home() {
   return (
     <div>
-      <p>DevMart Initial</p>
-      <Button>Start</Button>
+      <UserButton afterSignOutUrl="/"
+      />
     </div>
   );
 }
