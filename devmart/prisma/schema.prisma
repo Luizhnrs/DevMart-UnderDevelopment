@@ -18,12 +18,15 @@ model Course {
   isPublished Boolean @default(false)
 
   categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
 
   attachments Attachment[]
 
   createdAt DateTime  @default(now())
   updateAt  DateTime  @updatedAt
   Category  Category? @relation(fields: [categoryId], references: [id])
+
+  @@index([categoryId])
 }
 
 model Category {
