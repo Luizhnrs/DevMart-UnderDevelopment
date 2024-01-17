@@ -22,3 +22,23 @@ const backgroundVariants = cva(
     }
   }
 );
+
+const iconVariants = cva(
+  "",
+  {
+    variants: {
+      variant: {
+        default: "text-sky-700",
+        success: "text-emerald-700",
+      },
+      size: {
+        default: "h-8 w-8",
+        sm: "h-4 w-4"
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    }
+  }
+);
