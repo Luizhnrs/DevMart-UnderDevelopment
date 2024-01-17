@@ -1,6 +1,41 @@
 "use client"
 
-export const TitleForm = () => {
+import * as z from "zod";
+import axios from "axios";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+
+interface TitleFormProps {
+  initialData: {
+    title: string;
+  };
+  courseId: string;
+};
+
+const formSchema = z.object({
+  title: z.string().min(1, {
+    message: "Title is required",
+  }),
+});
+
+export const TitleForm = ({
+  initialData,
+  courseId
+}: TitleFormProps) => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: initialData,
+  });
   return(
     <div>
       Title Form
