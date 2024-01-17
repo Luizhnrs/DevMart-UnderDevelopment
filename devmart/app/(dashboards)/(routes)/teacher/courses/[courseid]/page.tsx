@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 const CourseIdPage = async ({
   params
 }:{
@@ -17,6 +17,10 @@ const CourseIdPage = async ({
       id: params.courseId
     }
   })
+
+  if(!course){
+    return redirect("/")
+  }
 
   return ( 
     <div>
