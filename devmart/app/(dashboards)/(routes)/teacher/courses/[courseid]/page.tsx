@@ -59,6 +59,10 @@ const CourseIdPage = async ({
             Customize your course
           </h2>
         </div>
+        <TitleForm
+          initialData={course}
+          courseId = {course.id}
+        />
       </div>
     </div>
   </div>
