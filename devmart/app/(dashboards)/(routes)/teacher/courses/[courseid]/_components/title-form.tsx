@@ -36,6 +36,13 @@ export const TitleForm = ({
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
   });
+
+  const { isSubmitting, isValid } = form.formState;
+
+  const onSubmit = async (values: z.infer<typeof formSchema>){
+    console.log(values)
+  }
+
   return(
     <div>
       Title Form
