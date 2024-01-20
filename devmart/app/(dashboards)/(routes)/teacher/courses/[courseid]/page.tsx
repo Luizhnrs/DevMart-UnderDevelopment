@@ -1,10 +1,20 @@
-
+import { db } from "@/lib/db";
+import { auth } from "@clerk/nextjs";
 
 const CourseIdPage = async ({
   params
 }: {
-  params: {courseId: String}
+  params: {courseId: string}
 }) => {
+  const {userId} = auth();
+
+  const course = await db.course.findUnique({
+    where: {
+      id: params.courseId
+    }
+  });
+
+
   return (
     <div>
       Course Id: {params.courseId}
