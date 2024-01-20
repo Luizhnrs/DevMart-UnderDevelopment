@@ -23,6 +23,14 @@ const CourseIdPage = async ({
     return redirect("/")
   }
 
+  const requiredFields = [
+    course.title,
+    course.description,
+    course.imageUrl,
+    course.price,
+    course.categoryId
+  ]
+
   return (
     <div>
       Course Id: {params.courseId}
