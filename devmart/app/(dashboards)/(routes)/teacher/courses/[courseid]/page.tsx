@@ -1,27 +1,40 @@
-import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { CircleDollarSign, File, LayoutDashboard, ListChecks } from "lucide-react";
+
+import { db } from "@/lib/db";
+import { IconBadge } from "@/components/icon-badge";
+
+import { TitleForm } from "./_components/title-form";
+import { DescriptionForm } from "./_components/description-form";
+
 
 const CourseIdPage = async ({
   params
 }: {
-  params: {courseId: string}
+  params: { courseId: string }
 }) => {
-  const {userId} = auth();
-  
-  if(!userId){
-    return redirect ("/")
-  };
+  const { userId } = auth();
+
+  if (!userId) {
+    return redirect("/");
+  }
 
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
-      userId,
+      userId
     },
   });
 
-  if(!course){
-    return redirect("/")
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  if (!course) {
+    return redirect("/");
   }
 
   const requiredFields = [
@@ -29,13 +42,15 @@ const CourseIdPage = async ({
     course.description,
     course.imageUrl,
     course.price,
-    course.categoryId
-  ]
+    course.categoryId,
+  ];
 
   const totalFields = requiredFields.length;
-  const completedFields = requiredFields.filter(Boolean).length
+  const completedFields = requiredFields.filter(Boolean).length;
 
-  const completionText = `(${completedFields}/${totalFields})`
+  const completionText = `(${completedFields}/${totalFields})`;
+
+  const isComplete = requiredFields.every(Boolean);
 
   return (
     <div className="p-6">
@@ -61,5 +76,4 @@ const CourseIdPage = async ({
     </div>
   );
 }
-
 export default CourseIdPage;
