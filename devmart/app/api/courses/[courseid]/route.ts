@@ -1,35 +1,34 @@
 import { db } from "@/lib/db";
-import {auth} from "@clerk/nextjs"
-import { NextResponse } from "next/server"
+import { auth } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-  {params } : {params: {courseId:string}}
+  { params }: { params: { courseid: string } }
 ) {
   try {
-    const {userId} = auth ();
-    const {courseId} = params;
+    const { userId } = auth();
+    const { courseid } = params;
     const values = await req.json();
 
-    if(!userId){
-      return new NextResponse ("Unauthorized", {status: 401})
-
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
     }
-    
+
     const course = await db.course.update({
-      where:{
-        id: params.courseId,
-        userId 
+      where: {
+        id: courseid,
+        userId,
       },
-      data:{
-        ...values
+      data: {
+        ...values,
       }
-    })
+    });
 
     return NextResponse.json(course);
-    
-  }catch(error){
-    console.log("[COURSE_ID]", error)
-    return new NextResponse ("Internal Error", {status:500})
+
+  } catch (error) {
+    console.log("[COURSE_ID]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
