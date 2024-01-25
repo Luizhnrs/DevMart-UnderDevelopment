@@ -22,9 +22,7 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 
 interface DescriptionFormProps {
-  initialData:{
-    description:string;
-  }
+  initialData: Course;
   courseId: string;
 };
 
