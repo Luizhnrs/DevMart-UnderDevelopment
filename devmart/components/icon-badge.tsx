@@ -28,7 +28,7 @@ const iconVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-sky-700",
+        default: "text-purple-700",
         success: "text-emerald-700",
       },
       size: {
