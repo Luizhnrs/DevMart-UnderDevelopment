@@ -62,6 +62,8 @@ export const CategoryForm = ({
     }
   }
 
+  const selectedOption = options.find((option) => option.value === initialData.categoryId);
+
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
@@ -82,7 +84,7 @@ export const CategoryForm = ({
           "text-sm mt-2",
           !initialData.description && "text-slate-500 italic"
         )}>
-          {initialData.description || "No description"}
+          {initialData.description || "No Category"}
         </p>
       )}
       {isEditing && (
