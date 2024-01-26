@@ -20,11 +20,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import { Combobox } from "@/components/ui/combobox";
 
 interface CategoryFormProps {
   initialData: Course;
   courseId: string;
-  options: {label: string; value: string;}[];
+  options: { label: string; value: string; }[];
 };
 
 const formSchema = z.object({
@@ -34,7 +35,7 @@ const formSchema = z.object({
 export const CategoryForm = ({
   initialData,
   courseId,
-  options
+  options,
 }: CategoryFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -67,7 +68,7 @@ export const CategoryForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course Category
+        Course category
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -82,9 +83,9 @@ export const CategoryForm = ({
       {!isEditing && (
         <p className={cn(
           "text-sm mt-2",
-          !initialData.description && "text-slate-500 italic"
+          !initialData.categoryId && "text-slate-500 italic"
         )}>
-          {initialData.description || "No Category"}
+          {selectedOption?.label || "No category"}
         </p>
       )}
       {isEditing && (
@@ -99,11 +100,9 @@ export const CategoryForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea
-                      disabled={isSubmitting}
-                      placeholder="e.g. 'This course is about...'"
-                      {...field}
-                    />
+                  <Combobox options={[]} onChange={function (value: string): void {
+                      throw new Error("Function not implemented.");
+                    } }/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
