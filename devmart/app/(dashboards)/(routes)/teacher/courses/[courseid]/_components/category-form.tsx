@@ -100,9 +100,10 @@ export const CategoryForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                  <Combobox options={[]} onChange={function (value: string): void {
-                      throw new Error("Function not implemented.");
-                    } }/>
+                    <Combobox
+                      options={...options}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
