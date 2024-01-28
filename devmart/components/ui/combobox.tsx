@@ -27,7 +27,6 @@ interface ComboboxProps {
 export const Combobox = ({
   options,
   value,
-  onChange
 }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false)
 
@@ -55,7 +54,6 @@ export const Combobox = ({
               <CommandItem
                 key={option.value}
                 onSelect={() => {
-                  onChange(option.value === value ? "" : option.value)
                   setOpen(false)
                 }}
               >
