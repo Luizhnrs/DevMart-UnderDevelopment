@@ -77,7 +77,15 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <CategoryForm initialData={course} courseId={course.id} options={categories.map((category) => ({
             label:category.name,
             value:category.id,
-          }))}/>
+          }))}
+          />
+        </div>
+        <div className="space-y-6">
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListChecks}/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
