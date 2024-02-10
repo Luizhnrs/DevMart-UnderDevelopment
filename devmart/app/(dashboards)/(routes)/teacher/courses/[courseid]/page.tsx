@@ -92,6 +92,14 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               TODO: Chapters
             </div>
           </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={CircleDollarSign}/>
+              <h2 className = "text-xl" >	
+                Sell Your Course
+              </h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>
